@@ -50,26 +50,11 @@ function ask_for_status(tab_id){
 function indicate_start(tab_id,tab_url){
 	console.log(tab_id,tab_url);
 	
-	if ((tab_url.search(/canvas.uchicago.edu/) != -1)&&((tab_url.search(/modules/) != -1) || (tab_url.search(/files/)!=-1))){
+	if ((tab_url.search(/canvas.cmu.edu/) != -1)&&((tab_url.search(/modules/) != -1) || (tab_url.search(/files/)!=-1))){
 		ask_for_status(tab_id);
 		webpage = "canvas";
 	}
-	else if(tab_url.search(/ilykei.com/) != -1){
-		if(tab_url.search(/lectures/) == -1){
-			if(tab_url.search(/lecture/) != -1){
-				ask_for_status(tab_id);
-				webpage = "ilykei";
-			}else{
-				document.getElementById('pText').innerHTML = "Sorry! This webpage is currently not supported :(";
-				$("#startProcess").hide();
-				$("#notSupported").show();
-			}
-		}else{
-			document.getElementById('pText').innerHTML = "Sorry! This webpage is currently not supported :(";
-			$("#startProcess").hide();
-			$("#notSupported").show();
-		}
-	}else{
+	else{
 		document.getElementById('pText').innerHTML = "Sorry! This webpage is currently not supported :(";
 		$("#startProcess").hide();
 		$("#notSupported").show();
@@ -101,7 +86,7 @@ function request_download(down_id){
 	}
 	folder=modules[down_id].replace(/[^a-z0-9.(),';{} +&^%\[\]$#@!~`-]/gi, '_');
 	for(i=0;i<dlinks.length;i++){
-		actual_link = 'https://canvas.uchicago.edu'.concat(dlinks[i]);
+		actual_link = 'https://canvas.cmu.edu'.concat(dlinks[i]);
 		chrome.downloads.download({url: actual_link,filename:folder.trim().replace(/ /g,"_").concat("/",dnames[i])});
 	}
 }
